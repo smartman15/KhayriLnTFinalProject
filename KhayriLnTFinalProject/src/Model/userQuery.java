@@ -38,7 +38,7 @@ public class userQuery {
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				menu.add(new Menu(rs.getString("kodeMenu"), rs.getString("namaMenu"), rs.getInt("hargaMenu"), rs.getInt("stokMeu")));
+				menu.add(new Menu(rs.getString("kodeMenu"), rs.getString("namaMenu"), rs.getInt("hargaMenu"), rs.getInt("stokMenu")));
 			}
 			
 			
