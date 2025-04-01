@@ -2,9 +2,7 @@ package Controller;
 
 
 import View.insertView;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.Button;
+import View.updateView;
 import javafx.stage.Stage;
 
 public class userController {
@@ -12,4 +10,7 @@ public class userController {
 		new insertView(stage);
 	}
 	
+	public static void handleUpdate(Stage stage) {
+		new updateView(stage);
+	}
 }

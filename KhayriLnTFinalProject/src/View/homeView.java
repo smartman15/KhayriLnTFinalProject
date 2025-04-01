@@ -23,6 +23,7 @@ public class homeView {
 		root.setAlignment(Pos.CENTER);
 		Label msg = new Label("What would you like to do?");
 		Button btnInsert = new Button("Insert menu");
+		Button btnUpdate = new Button("Update menu");
 		btnInsert.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
@@ -31,8 +32,17 @@ public class homeView {
 			}
 		});
 		
+		btnUpdate.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent arg0) {
+				userController.handleUpdate(stage);
+			}
+		});
+		
 		root.add(msg, 0, 0);
 		root.add(btnInsert, 0, 1);
+		root.add(btnUpdate, 1, 1);
 		
 		Scene scene = new Scene(root, 500, 400);
 		

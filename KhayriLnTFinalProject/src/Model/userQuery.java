@@ -12,7 +12,7 @@ public class userQuery {
 	static DatabaseConnection db = new DatabaseConnection();
 	
 	public static void insert(String kode, String nama, int harga, int stok) {
-		String query = "INSERT INTO menudb (kodeMenu, namaMenu, hargaMenu, stokMenu) VALUES (?, ?, ?, ?)";
+		String query = "INSERT INTO menudb (kode, nama, harga, stok) VALUES (?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement ps = db.ps(query);
@@ -28,6 +28,25 @@ public class userQuery {
 	}
 	
 	
+	public static void update(int harga, int stok, String kode) {
+		String query = "UPDATE menudb "
+				+ "SET harga = ?, stok = ? "
+				+ "WHERE kode = ?";
+		
+		try {
+			PreparedStatement ps = db.ps(query);
+			ps.setInt(1, harga);
+			ps.setInt(2, stok);
+			ps.setString(3, kode);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	
 	public static ObservableList<Menu> getMenu(){
 		ObservableList<Menu> menu = FXCollections.observableArrayList();
@@ -38,7 +57,7 @@ public class userQuery {
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				menu.add(new Menu(rs.getString("kodeMenu"), rs.getString("namaMenu"), rs.getInt("hargaMenu"), rs.getInt("stokMenu")));
+				menu.add(new Menu(rs.getString("kode"), rs.getString("nama"), rs.getInt("harga"), rs.getInt("stok")));
 			}
 			
 			

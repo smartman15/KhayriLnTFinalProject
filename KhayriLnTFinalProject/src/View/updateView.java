@@ -16,16 +16,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class insertView {
+public class updateView {
 	Stage stage;
 	private BorderPane root = new BorderPane();
 	private GridPane gridPane = new GridPane();
-	private TextField fieldKode = new TextField();
-	private TextField fieldNama = new TextField();
 	private TextField fieldHarga = new TextField();
 	private TextField fieldStok = new TextField();
 	
-	public insertView(Stage stage) {
+	public updateView(Stage stage) {
 		this.stage = stage;
 		show();
 	}
@@ -50,38 +48,36 @@ public class insertView {
 		table.setItems(userQuery.getMenu());
 		root.setBottom(table);
 		
-		Label kode = new Label("Kode: ");
-		Label nama = new Label("Nama: ");
-		Label harga = new Label("Harga: ");
-		Label stok = new Label("Stok: ");
-		
-		Button btnInsert = new Button("Insert menu");
-		btnInsert.setOnAction(new EventHandler<ActionEvent>() {
+		Label labelHarga = new Label("Harga:");
+		Label labelStok = new Label("Stok:");
+		Label msg = new Label("Please select a menu");
+		Label notif = new Label();
+		Button btnUpdate = new Button("Update data");
+		btnUpdate.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent arg0) {
-				String kode = fieldKode.getText().trim();
-				String nama = fieldNama.getText().trim();
+				Menu menu = table.getSelectionModel().getSelectedItem();
+				String kode = menu.getKode();
 				int harga = Integer.parseInt(fieldHarga.getText().trim());
 				int stok = Integer.parseInt(fieldStok.getText().trim());
 				
-				userQuery.insert(kode, nama, harga, stok);
+				userQuery.update(harga, stok, kode);
+				notif.setText("horeee, menu berhasil diupdate :3");
 				table.setItems(userQuery.getMenu());
+				
 			}
 		});
 		
-		gridPane.add(kode, 0, 0);
-		gridPane.add(fieldKode, 1, 0);
-		gridPane.add(nama, 0, 1);
-		gridPane.add(fieldNama, 1, 1);
-		gridPane.add(harga, 0, 2);
-		gridPane.add(fieldHarga, 1, 2);
-		gridPane.add(stok, 0, 3);
-		gridPane.add(fieldStok, 1, 3);
-		gridPane.add(btnInsert, 0, 4);
+		gridPane.add(labelHarga, 0, 0);
+		gridPane.add(fieldHarga, 1, 0);
+		gridPane.add(labelStok, 0, 1);
+		gridPane.add(fieldStok, 1, 1);
+		gridPane.add(btnUpdate, 0, 2);
+		gridPane.add(notif, 1, 2);
+		gridPane.add(msg, 0, 3);
 		
 		Scene scene = new Scene(root, 500, 400);
-		
 		stage.setScene(scene);
 		stage.show();
 	}
