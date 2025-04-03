@@ -50,6 +50,21 @@ public class userQuery {
 	}
 	
 	
+	public static void delete(String kode) {
+		String query = "DELETE FROM menudb WHERE kode = ?";
+		
+		try {
+			PreparedStatement ps = db.ps(query);
+			ps.setString(1, kode);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 	public static ObservableList<Menu> getMenu(){
 		ObservableList<Menu> menu = FXCollections.observableArrayList();
 		String query = "SELECT * FROM menudb";
