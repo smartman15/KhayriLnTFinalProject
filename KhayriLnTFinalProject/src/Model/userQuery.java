@@ -28,7 +28,7 @@ public class userQuery {
 	}
 	
 	
-	public static int update(int harga, int stok, String kode) {
+	public static void update(int harga, int stok, String kode) {
 		String query = "UPDATE menudb "
 				+ "SET harga = ?, stok = ? "
 				+ "WHERE kode = ?";
@@ -38,12 +38,7 @@ public class userQuery {
 			ps.setInt(1, harga);
 			ps.setInt(2, stok);
 			ps.setString(3, kode);
-			if(ps.executeUpdate() > 0) {
-				return 1;
-			}
-			else {
-				return 0;
-			}
+			ps.executeUpdate();
 			
 			
 		} catch (SQLException e) {
