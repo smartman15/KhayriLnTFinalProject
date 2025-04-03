@@ -64,7 +64,7 @@ public class updateView {
 				if(menu == null) {
 					notif.setText("Tolong pilih menu terlebih dahulu");
 				}
-				else if(textHarga == "" || textStok == "") {
+				else if(textHarga.isEmpty() || textStok.isEmpty()) {
 					notif.setText("Tolong isi text field terlebih dahulu");
 				}
 				else {
