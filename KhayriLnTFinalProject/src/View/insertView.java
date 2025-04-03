@@ -54,19 +54,30 @@ public class insertView {
 		Label nama = new Label("Nama: ");
 		Label harga = new Label("Harga: ");
 		Label stok = new Label("Stok: ");
+		Label notif = new Label();
 		
 		Button btnInsert = new Button("Insert menu");
 		btnInsert.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent arg0) {
-				String kode = fieldKode.getText().trim();
-				String nama = fieldNama.getText().trim();
-				int harga = Integer.parseInt(fieldHarga.getText().trim());
-				int stok = Integer.parseInt(fieldStok.getText().trim());
-				
-				userQuery.insert(kode, nama, harga, stok);
-				table.setItems(userQuery.getMenu());
+				String kode = fieldKode.getText();
+				String nama = fieldNama.getText();
+				String textHarga = fieldHarga.getText();
+				String textStok = fieldStok.getText();
+				if(kode.isEmpty() || nama.isEmpty() || textHarga.isEmpty() || textStok.isEmpty()) {
+					notif.setText("Tolong isi semua field terlebih dahulu");
+				}
+				else {
+					kode = kode.trim();
+					nama = nama.trim();
+					int harga = Integer.parseInt(textHarga.trim());
+					int stok = Integer.parseInt(textStok.trim());
+					notif.setText("Menu berhasil ditambahkan yeayyy");
+					
+					userQuery.insert(kode, nama, harga, stok);
+					table.setItems(userQuery.getMenu());
+				}
 			}
 		});
 		
@@ -79,6 +90,7 @@ public class insertView {
 		gridPane.add(stok, 0, 3);
 		gridPane.add(fieldStok, 1, 3);
 		gridPane.add(btnInsert, 0, 4);
+		gridPane.add(notif, 1, 4);
 		
 		Scene scene = new Scene(root, 500, 400);
 		

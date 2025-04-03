@@ -69,8 +69,8 @@ public class updateView {
 				}
 				else {
 					String kode = menu.getKode();
-					int harga = Integer.parseInt(textHarga);
-					int stok = Integer.parseInt(textStok);
+					int harga = Integer.parseInt(textHarga.trim());
+					int stok = Integer.parseInt(textStok.trim());
 					userQuery.update(harga, stok, kode);
 					notif.setText("horeee, menu berhasil diupdate :3");
 					
