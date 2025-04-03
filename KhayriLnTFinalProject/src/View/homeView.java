@@ -24,6 +24,7 @@ public class homeView {
 		Label msg = new Label("What would you like to do?");
 		Button btnInsert = new Button("Insert menu");
 		Button btnUpdate = new Button("Update menu");
+		Button btnDelete = new Button("Delete menu");
 		btnInsert.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
@@ -40,9 +41,18 @@ public class homeView {
 			}
 		});
 		
+		btnDelete.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent arg0) {
+				userController.handleDelete(stage);
+			}
+		});
+		
 		root.add(msg, 0, 0);
 		root.add(btnInsert, 0, 1);
 		root.add(btnUpdate, 1, 1);
+		root.add(btnDelete, 2, 1);
 		
 		Scene scene = new Scene(root, 500, 400);
 		
