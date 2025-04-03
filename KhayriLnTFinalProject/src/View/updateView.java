@@ -58,13 +58,26 @@ public class updateView {
 			@Override
 			public void handle(ActionEvent arg0) {
 				Menu menu = table.getSelectionModel().getSelectedItem();
-				String kode = menu.getKode();
-				int harga = Integer.parseInt(fieldHarga.getText().trim());
-				int stok = Integer.parseInt(fieldStok.getText().trim());
+				String textHarga = fieldHarga.getText();
+				String textStok = fieldStok.getText();
 				
-				userQuery.update(harga, stok, kode);
-				notif.setText("horeee, menu berhasil diupdate :3");
-				table.setItems(userQuery.getMenu());
+				if(menu == null) {
+					notif.setText("Tolong pilih menu terlebih dahulu");
+				}
+				else if(textHarga == "" || textStok == "") {
+					notif.setText("Tolong isi text field terlebih dahulu");
+				}
+				else {
+					String kode = menu.getKode();
+					int harga = Integer.parseInt(textHarga);
+					int stok = Integer.parseInt(textStok);
+					userQuery.update(harga, stok, kode);
+					notif.setText("horeee, menu berhasil diupdate :3");
+					
+					
+					table.setItems(userQuery.getMenu());
+				}
+				
 				
 			}
 		});
