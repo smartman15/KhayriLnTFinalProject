@@ -1,5 +1,6 @@
 package View;
 
+import Controller.userController;
 import Model.Menu;
 import Model.userQuery;
 import javafx.event.ActionEvent;
@@ -29,6 +30,15 @@ public class updateView {
 	}
 	
 	public void show() {
+		Button back = new Button("Balik ke home");
+		back.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent arg0) {
+				userController.handleHome(stage);
+			}
+		});
+		root.setTop(back);
 		root.setCenter(gridPane);
 		gridPane.setAlignment(Pos.CENTER);
 		TableView<Menu> table = new TableView<>();

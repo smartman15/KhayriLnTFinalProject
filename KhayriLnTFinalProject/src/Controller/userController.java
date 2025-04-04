@@ -2,6 +2,7 @@ package Controller;
 
 
 import View.deleteView;
+import View.homeView;
 import View.insertView;
 import View.updateView;
 import javafx.stage.Stage;
@@ -17,5 +18,9 @@ public class userController {
 	
 	public static void handleDelete(Stage stage) {
 		new deleteView(stage);
+	}
+	
+	public static void handleHome(Stage stage) {
+		new homeView(stage);
 	}
 }
