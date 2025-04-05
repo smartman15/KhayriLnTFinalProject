@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import Model.Menu;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class userQuery {
 	static DatabaseConnection db = new DatabaseConnection();
@@ -82,4 +85,24 @@ public class userQuery {
 		}
 		return menu;
 	}
+	
+	public static TableView<Menu> getTable(){
+		TableView<Menu> table = new TableView<>();
+		TableColumn<Menu, String> kodeCol = new TableColumn<>("kode");
+		kodeCol.setCellValueFactory(new PropertyValueFactory<>("kode"));
+		
+		TableColumn<Menu, String> namaCol = new TableColumn<>("nama");
+		namaCol.setCellValueFactory(new PropertyValueFactory<>("nama"));
+		
+		TableColumn<Menu, Integer> hargaCol = new TableColumn<>("harga");
+		hargaCol.setCellValueFactory(new PropertyValueFactory<>("harga"));
+		
+		TableColumn<Menu, String> stokCol = new TableColumn<>("stok");
+		stokCol.setCellValueFactory(new PropertyValueFactory<>("stok"));
+		
+		table.getColumns().addAll(kodeCol, namaCol, hargaCol, stokCol);
+		table.setItems(userQuery.getMenu());
+		return table;
+	}
+
 }

@@ -41,21 +41,7 @@ public class updateView {
 		root.setTop(back);
 		root.setCenter(gridPane);
 		gridPane.setAlignment(Pos.CENTER);
-		TableView<Menu> table = new TableView<>();
-		TableColumn<Menu, String> kodeCol = new TableColumn<>("kode");
-		kodeCol.setCellValueFactory(new PropertyValueFactory<>("kode"));
-		
-		TableColumn<Menu, String> namaCol = new TableColumn<>("nama");
-		namaCol.setCellValueFactory(new PropertyValueFactory<>("nama"));
-		
-		TableColumn<Menu, Integer> hargaCol = new TableColumn<>("harga");
-		hargaCol.setCellValueFactory(new PropertyValueFactory<>("harga"));
-		
-		TableColumn<Menu, String> stokCol = new TableColumn<>("stok");
-		stokCol.setCellValueFactory(new PropertyValueFactory<>("stok"));
-		
-		table.getColumns().addAll(kodeCol, namaCol, hargaCol, stokCol);
-		table.setItems(userQuery.getMenu());
+		TableView<Menu> table = userQuery.getTable();
 		root.setBottom(table);
 		
 		Label labelHarga = new Label("Harga:");
